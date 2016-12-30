@@ -1,0 +1,51 @@
+package com.agile_ERP.test.regression;
+
+import org.testng.annotations.Test;
+
+import com.agile_ERP.helper.GetData;
+import com.agile_ERP.ui.EmployeeDetails;
+
+
+public class Admin_Employee_Edit extends BaseClass {
+	
+	@Test
+	public void edit_user() throws InterruptedException
+	{
+		EmployeeDetails ed=new EmployeeDetails(driver);
+		
+		int rIndex=1;
+		int cIndex=0;
+		String un=GetData.fromExcel("./data/tdata.xlsx", "admin", rIndex, cIndex);
+		
+		
+		
+		//Edit Employee
+		ed.administration();
+		ed.employee();
+		ed.edit("Aaditya", "Kumar", "Management"); 
+		ed.firstName("Aaditya");
+		ed.middleName(" ");
+		ed.lastName("Kumar");
+		ed.dateOfBirth("01/01/1990");
+		Thread.sleep(1000);
+		//Department
+		//Role
+		ed.role("USER");
+		//Employee Type
+		ed.active("NO");
+		ed.address1("BTM, Stage 1");
+		ed.address2("HSR layout, BDA Complex");
+		ed.email("nitish@agilehealthtech.com");
+		ed.city("Bangalore");
+		ed.state("KA");
+		ed.zip("560068");
+		ed.ssn("AHT123456");
+		ed.deskPhone("123456");
+		ed.cellPhone("9876543210");
+	/*	ed.accessRole("Management");*/
+		ed.save();
+		//ed.back();
+	}
+	
+	
+}

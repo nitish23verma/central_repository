@@ -1,0 +1,43 @@
+package com.pom;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class Sign_in
+{
+	WebDriver driver;
+	
+	@FindBy(id="Email")
+	private WebElement userName;
+	
+	@FindBy(id="next")
+	private WebElement nextButton;
+	
+	@FindBy(id="Passwd")
+	private WebElement password;
+	
+	@FindBy(id="signIn")
+	private WebElement signInButton;
+	
+	
+	@FindBy(xpath="//button[text()='Submit']")
+	private WebElement submit;
+
+	public Sign_in(WebDriver driver)
+	{
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+		
+	}
+	public void login(String un, String pw)
+	{
+		userName.clear();
+		userName.sendKeys(un);
+		nextButton.click();
+		password.clear();
+		password.sendKeys(pw);
+		signInButton.click();
+	}
+}

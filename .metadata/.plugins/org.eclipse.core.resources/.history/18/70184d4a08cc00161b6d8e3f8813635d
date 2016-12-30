@@ -1,0 +1,11 @@
+package com.test;
+
+import org.testng.annotations.Test;
+
+public class Admin_Employee_Add extends BaseClass {
+	@Test
+	public void test() {
+
+	}
+
+}

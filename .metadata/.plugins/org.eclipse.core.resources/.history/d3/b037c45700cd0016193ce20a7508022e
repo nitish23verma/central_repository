@@ -1,0 +1,43 @@
+import org.testng.annotations.Test;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class GoogleSearchTest {
+
+	@Test
+
+	public void googleSearchTest() {
+		ExcelData eLib = new ExcelData();// create object of excel data
+		WebDriver d = new FirefoxDriver();
+		d.manage().window().maximize();
+		d.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		d.get("https://google.com");
+		// read data from 15-50 row
+		for (i = 14; i < 50; i++) {
+			String data = eLib.getExcelData(" Sheet1", i, 1) + new Date().getTime();// read
+																					// data
+																					// from
+																					// second
+																					// column
+																					// +
+																					// current
+																					// time
+																					// stamp
+
+			d.findElement(By.id("lst-ib")).sendKeys(data, Keys.ENTER);// pass
+																		// data
+																		// in
+																		// google
+																		// search
+																		// box
+		}
+
+	}
+
+}

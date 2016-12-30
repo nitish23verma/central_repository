@@ -1,0 +1,102 @@
+package com.agile_ERP.test.regression;
+
+import org.testng.annotations.Test;
+
+import com.agile_ERP.ui.EmployeeDetails;
+
+public class Admin_Employee_Add extends BaseClass 
+{	
+	@Test
+	public void test()
+	{
+		String add="YES";
+		String edit="YES";
+		if(add.equals("YES")==true)
+		{
+			try {
+				add();
+			} catch (InterruptedException e) {
+					e.printStackTrace();
+			}
+		} 
+		 if(edit.equals("YES")==true)
+		{
+			try {
+				edit();
+			} catch (InterruptedException e) {
+					e.printStackTrace();
+			}
+		}
+	}
+		
+	
+	public static void add() throws InterruptedException
+	{
+		
+		HomePage ed=new HomePage(driver);
+		
+		//Add Employee
+		ed.administration();
+		ed.employee();
+		ed.add();
+		ed.firstName("Vaibhav");
+		ed.middleName("K");
+		ed.lastName("Singh");
+		ed.dateOfBirth("01/01/1990");
+		Thread.sleep(1000);
+		ed.userName("Vaibhav");
+		Thread.sleep(1000);
+		ed.password("Aht@123");
+		Thread.sleep(1000);
+		//Department
+		//Role
+		ed.role("USER");
+		//Employee Type
+		ed.active("YES");
+		ed.address1("BTM, Stage 1");
+		ed.address2("HSR layout, BDA Complex");
+		ed.email("nitish@agilehealthtech.com");
+		ed.city("Bangalore");
+		ed.state("KA");
+		ed.zip("560068");
+		ed.ssn("AHT123456");
+		ed.deskPhone("");
+		ed.cellPhone("9876543210");
+		ed.accessRole("Developer Role");
+		/*ed.save();*/
+		ed.back();
+	}
+	
+	public static void edit() throws InterruptedException
+	{
+		HomePage ed=new HomePage(driver);
+		
+		//Edit Employee
+		ed.administration();
+		ed.employee();
+		ed.edit("Aaditya", "Kumar", "Management"); 
+		ed.firstName("Aaditya");
+		ed.middleName(" ");
+		ed.lastName("Kumar");
+		ed.dateOfBirth("01/01/1990");
+		Thread.sleep(1000);
+		//Department
+		//Role
+		ed.role("USER");
+		//Employee Type
+		ed.active("NO");
+		ed.address1("BTM, Stage 1");
+		ed.address2("HSR layout, BDA Complex");
+		ed.email("nitish@agilehealthtech.com");
+		ed.city("Bangalore");
+		ed.state("KA");
+		ed.zip("560068");
+		ed.ssn("AHT123456");
+		ed.deskPhone("123456");
+		ed.cellPhone("9876543210");
+	/*	ed.accessRole("Management");*/
+		ed.save();
+		//ed.back();
+	}
+	
+}

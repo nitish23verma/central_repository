@@ -1,0 +1,29 @@
+package com.test;
+
+import org.testng.annotations.Test;
+
+import com.pom.HomePage;
+import com.pom.Sign_in;
+
+import helper.GetData;
+
+public class Login extends BaseClass {
+	@Test
+	public void test() {
+
+		Sign_in s=new Sign_in(driver);
+		
+		int rIndex=1;
+		int cIndex=0;
+		
+		String un=GetData.fromExcel("./data/tdata.xlsx", "admin", 1, 0);
+		String pw=GetData.fromExcel("./data/tdata.xlsx", "admin", 1, 1);
+		
+		s.login(un, pw);
+		HomePage h1=new HomePage(driver);
+		h1.clickLogoutGem();
+		h1.clickSignOut();
+		
+	}
+
+}

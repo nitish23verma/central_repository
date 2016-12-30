@@ -1,0 +1,203 @@
+package config;
+
+import java.io.IOException;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Reporter;
+
+public class Helper {
+
+	public static void clickBack(WebDriver driver) {
+		WebElement backButton = driver.findElement(By.xpath("//button[text()='Back'][@ng-click='lnkback()']"));
+		if (backButton.isDisplayed()) {
+			backButton.click();
+		}
+	}
+
+	// Developing functionality to Handle alert.
+
+	public static void acceptAlert(WebDriver driver) {
+		Alert alt = driver.switchTo().alert();
+		alt.accept();
+	}
+
+	public static void dismissAlert(WebDriver driver) {
+		Alert alt = driver.switchTo().alert();
+		alt.dismiss();
+	}
+
+	public static void enterTextOnAlert(WebDriver driver, String data) {
+		Alert alt = driver.switchTo().alert();
+		alt.sendKeys(data);
+	}
+
+	public static String getAlertText(WebDriver driver) {
+		Alert alt = driver.switchTo().alert();
+		String alertMsg = alt.getText();
+		return alertMsg;
+	}
+
+	public static void downloadFile() throws InterruptedException {
+		try {
+			Thread.sleep(1000);
+			Runtime.getRuntime().exec("./exes/Export.exe");
+			Thread.sleep(12000);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// Developing functionality of select option
+
+	public static void selectDDLByIndex(WebElement ddl, int index) {
+		Select sct = new Select(ddl);
+		sct.selectByIndex(index);
+	}
+
+	public static void selectDDLByValue(WebElement ddl, String value) {
+		Select sct = new Select(ddl);
+		sct.selectByValue(value);
+	}
+
+	public static void selectDDLByVisibleText(WebDriver driver, String text) {
+		String attrib = driver.findElement(By.xpath("//select")).getAttribute("title");
+		WebElement ddl;
+		// Case
+		switch (attrib) {
+
+		case "Company Name":
+			ddl = driver.findElement(By.xpath("//select[@title='" + attrib + "']"));
+			ddl.click();
+			break;
+
+		case "Department":
+			ddl = driver.findElement(By.xpath("//select[@title='" + attrib + "']"));
+			ddl.click();
+			break;
+
+		case "Role":
+			ddl = driver.findElement(By.xpath("//select[@title='" + attrib + "']"));
+			ddl.click();
+			break;
+
+		case "Employee ":
+			ddl = driver.findElement(By.xpath("//select[@title='" + attrib + "']"));
+			ddl.click();
+			break;
+
+		}
+
+		// System.out.println(attrib);
+
+		// Select sct = new Select(ddl);
+		// sct.selectByVisibleText(text);
+
+	}
+
+	// Developing functionality of Calendar option
+	public static void calender(WebDriver driver, String date) throws InterruptedException {
+		String dob = "DOB";
+		WebElement wb = driver.findElement(By.xpath("//input[@datepicker-options='dateOptions']"));
+		String clear = wb.getText();
+		String attribute = driver.findElement(By.xpath("//input[@datepicker-options='dateOptions']"))
+				// ("//input[@datepicker-options='dateOptions'][@class='form-control
+				// ng-pristine ng-valid']"))
+				.getAttribute("name");
+
+		if (!clear.equals(null)) {
+			wb.clear();
+			// Case
+			switch (attribute) {
+			case "ToDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "FromDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "DOB":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "Emp_Start_Dt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "Emp_End_Dt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "FromDt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "ToDt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "ExpenseDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "txtExpenseDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "ReceiptDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "SelectDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+
+			default:
+				Reporter.log("Invalid date or, Date format issue..", true);
+			}
+		} else {
+
+			// Case
+			switch (attribute) {
+			case "ToDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "FromDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "DOB":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "Emp_Start_Dt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "Emp_End_Dt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "FromDt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "ToDt":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "ExpenseDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "txtExpenseDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "ReceiptDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+			case "SelectDate":
+				driver.findElement(By.name(attribute)).sendKeys(date);
+				break;
+
+			default:
+				Reporter.log("Invalid date or, Date format issue..", true);
+			}
+			Thread.sleep(1000);
+		}
+
+		// get attribute
+		driver.findElement(By.xpath("//*[@ng-model='txtdob']")).sendKeys(dob);
+		driver.findElement(By.xpath("//button[@type='button'][text()='Done']")).click();
+
+	}
+}

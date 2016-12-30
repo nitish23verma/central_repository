@@ -1,0 +1,380 @@
+package com.pom;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import config.Helper;
+
+
+
+public class HomePage
+{
+	WebDriver driver;
+	
+	@FindBy(xpath="//span[@class='gb_8a gbii']")
+	private WebElement logoutGem;
+	
+	@FindBy(xpath="//a[text()=' Employee']")
+	private WebElement employeeButton;	
+	
+	// Add Employee
+	@FindBy(xpath="(//button[text()='Add'])[1]") 
+	private WebElement addButton;
+	
+	//Edit Employee
+	@FindBy(xpath="(//button[text()='Edit'])[1]")
+	private WebElement editButton;
+	
+	@FindBy(xpath="(//div[@class='ui-grid-header-cell-wrapper']//*[@type='text'])[1]")
+	private WebElement searchFname;
+	
+	@FindBy(xpath="(//div[@class='ui-grid-header-cell-wrapper']//*[@type='text'])[2]")
+	private WebElement searchLname;
+	
+	@FindBy(xpath="(//div[@class='ui-grid-header-cell-wrapper']//*[@type='text'])[3]")
+	private WebElement searchDepartment;
+	
+	
+	//Refresh
+	@FindBy(xpath="(//button[text()='Refresh'])[1]")
+	private WebElement refreshButton;
+	
+	@FindBy(xpath="(//button[text()='Send Mail'])")
+	private WebElement sendMailButton;
+	
+	@FindBy(xpath="(//button[text()='Send'])[1]")
+	private WebElement sendButton1;
+	
+	@FindBy(xpath="(//button[text()='Reset Password'])")
+	private WebElement resetPasswordButton;
+	
+	@FindBy(xpath="(//button[text()='Send'])[2]")
+	private WebElement sendButton2;
+	
+	@FindBy(xpath="(//button[text()='Resnd Email Confirmation'])")
+	private WebElement resendEmailConfirmationButton;
+	
+	
+	// Common Element for Add & Edit.
+	@FindBy(name="firstName")
+	private WebElement fnameTextbox;
+	
+	@FindBy(xpath="//input[@title='Middle Name']")
+	private WebElement middleNameTextbox;
+	
+	@FindBy(name="lastname")
+	private WebElement lastNameTextbox;
+	
+	// DOB //
+	
+	@FindBy(name="username")
+	private WebElement userNameTextbox;
+	
+	@FindBy(name="password")
+	private WebElement passWordTextbox;
+	
+	@FindBy(xpath="//div[@title='Department']//ul[@class='chosen-results']")
+	private WebElement departmentTextbox;
+	
+	// Department //
+	
+	// Role //
+
+	//Employee Type //
+	
+	@FindBy(xpath="//input[@type='checkbox'][@ng-model='chkactiveadd']")
+	private WebElement activeCheckbox;
+
+	@FindBy(xpath="//textarea[@title='Address 1']")
+	private WebElement address1Textbox;
+	
+	@FindBy(xpath="//textarea[@title='Address 2']")
+	private WebElement address2Textbox;
+	
+	@FindBy(id="txtemail")
+	private WebElement emailTextbox;
+	
+	@FindBy(xpath="//input[@title='City']")
+	private WebElement cityTextbox;
+	
+	@FindBy(xpath="//input[@title='State']")
+	private WebElement stateTextbox;
+	
+	@FindBy(id="txtzip")
+	private WebElement zipTextbox;
+	
+	@FindBy(xpath="//input[@title='SSN']")
+	private WebElement ssnTextbox;
+	
+	@FindBy(xpath="//input[@title='Desk Phone']")
+	private WebElement deskPhoneTextbox;
+	
+	@FindBy(xpath="//input[@title='Cell Phone']")
+	private WebElement cellPhoneTextbox;
+	
+	@FindBy(xpath="//div[@id='DownScroller']//button[text()='Save'][@ng-hide='submit']")
+	private WebElement saveButton;
+	
+	// Role //
+	
+	public HomePage(WebDriver driver)
+	{
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	public void logoutGemClick()
+	{
+		logoutGem.click();
+	}
+	
+	public void employee()
+	{
+		employeeButton.click();
+	}
+	public void add()
+	{
+		addButton.click();
+	}
+	
+	public void edit(String sFirstname, String sLastname, String sDepartment ) throws InterruptedException
+	{
+		Thread.sleep(1000);
+		searchFname.sendKeys(sFirstname);
+		searchLname.sendKeys(sLastname);
+		searchDepartment.sendKeys(sDepartment);
+		driver.findElement(By.xpath("(//div[@class='ui-grid-cell-contents ng-scope ng-binding'][text()='"+sFirstname+"'])[1]")).click(); 	
+		editButton.click();
+	}
+	
+	
+	public void back()
+	{
+		Helper.clickBack(driver);
+	}
+	
+	
+	public void refresh()
+	{
+		refreshButton.click();
+	}
+	
+	public void sendMail()
+	{
+		sendMailButton.click();
+		sendButton1.click();
+		Helper.acceptAlert(driver);
+	}
+	
+	public void resetPassword()
+	{
+		resetPasswordButton.click();
+		sendButton2.click();
+		Helper.acceptAlert(driver);
+		
+	}
+	
+	public void resendEmailConfirmation()
+	{
+		resendEmailConfirmationButton.click();
+		sendButton2.click();
+		Helper.acceptAlert(driver);
+	}
+	
+	public void firstName(String fn)
+	{
+		if(!fnameTextbox.equals(null))
+		{
+			fnameTextbox.clear();
+			fnameTextbox.sendKeys(fn);
+		} else {
+		fnameTextbox.sendKeys(fn);
+		}
+	}
+	
+	public void middleName(String mn)
+	{
+		if(!middleNameTextbox.equals(null))
+		{
+			middleNameTextbox.clear();
+			middleNameTextbox.sendKeys(mn);
+		} else {
+			middleNameTextbox.sendKeys(mn);
+		}
+		
+	}
+	
+	public void lastName(String ln)
+	{
+		if(!lastNameTextbox.equals(null))
+		{
+			lastNameTextbox.clear();
+			lastNameTextbox.sendKeys(ln);
+		} else {
+			lastNameTextbox.sendKeys(ln);
+		}
+	}
+	
+	public void userName(String un)
+	{
+		userNameTextbox.sendKeys(un);
+	}
+	
+	public void password(String pw)
+	{
+		passWordTextbox.sendKeys(pw);
+	}
+	
+	// Department
+	public void dateOfBirth(String DOB) throws InterruptedException
+	{
+		Helper.calender(driver, DOB);
+	}
+	
+	// Role,
+	public void role(String value)
+	{
+		
+		Helper.selectDDLByVisibleText(driver, value);
+	}
+	
+	
+	
+	//Employee Type // 
+	
+	public void active(String chkbox) throws InterruptedException 
+	{
+		Thread.sleep(1000);
+		if(chkbox.equals("YES") && (activeCheckbox.isSelected())==false)
+		{
+			activeCheckbox.click();
+		}
+		else if(chkbox.equals("YES") && (activeCheckbox.isSelected())==true)
+		{
+			activeCheckbox.click();
+		}
+	}
+	
+	public void address1(String add1)
+	{
+		if(!address1Textbox.equals(null))
+		{
+			address1Textbox.clear();
+			address1Textbox.sendKeys(add1);
+		} else {
+			address1Textbox.sendKeys(add1);
+		}
+		
+	}
+	
+	public void address2(String add2)
+	{
+		if(!address2Textbox.equals(null))
+		{
+			address2Textbox.clear();
+			address2Textbox.sendKeys(add2);
+		} else {
+			address2Textbox.sendKeys(add2);
+		}
+		
+	}
+	
+	public void email(String em)
+	{
+		if(!emailTextbox.equals(null))
+		{
+			emailTextbox.clear();
+			emailTextbox.sendKeys(em);
+		} else {
+			emailTextbox.sendKeys(em);
+		}
+		
+	}
+	
+	public void city(String cty)
+	{
+		if(!cityTextbox.equals(null))
+		{
+			cityTextbox.clear();
+			cityTextbox.sendKeys(cty);
+		} else {
+			cityTextbox.sendKeys(cty);
+		}
+		
+	}
+	
+	public void state(String st)
+	{
+		if(!stateTextbox.equals(null))
+		{
+			stateTextbox.clear();
+			stateTextbox.sendKeys(st);
+		} else {
+			stateTextbox.sendKeys(st);
+		}
+		
+	}
+	
+	public void zip(String zp)
+	{
+		if(!zipTextbox.equals(null))
+		{
+			zipTextbox.clear();
+			zipTextbox.sendKeys(zp);
+		} else {
+			zipTextbox.sendKeys(zp);
+		}
+		
+	}
+	
+	public void ssn(String sn)
+	{
+		if(!ssnTextbox.equals(null))
+		{
+			ssnTextbox.clear();
+			ssnTextbox.sendKeys(sn);
+		} else {
+			ssnTextbox.sendKeys(sn);
+		}
+		
+	}
+	
+	public void deskPhone(String dphone)
+	{
+		if(!deskPhoneTextbox.equals(null))
+		{
+			deskPhoneTextbox.clear();
+			deskPhoneTextbox.sendKeys(dphone);
+		} else {
+			deskPhoneTextbox.sendKeys(dphone);
+		}
+		
+	}
+	
+	
+	public void cellPhone(String cphone)
+	{
+		if(!cellPhoneTextbox.equals(null))
+		{
+			cellPhoneTextbox.clear();
+			cellPhoneTextbox.sendKeys(cphone);
+		} else {
+			cellPhoneTextbox.sendKeys(cphone);
+		}
+		
+	}
+	
+	public void accessRole(String aRole)
+	{
+		driver.findElement(By.xpath("(//div[@class='ui-grid-cell-contents ng-scope ng-binding'][text()='"+aRole+"'])[1]")).click();
+	}
+	
+	public void save()
+	{
+		saveButton.click();
+	}
+	
+}

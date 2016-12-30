@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="20142" started-at="2016-12-30T12:23:36Z" finished-at="2016-12-30T12:23:56Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="20142" started-at="2016-12-30T12:23:36Z" finished-at="2016-12-30T12:23:56Z">
+      <class name="com.test.Login">
+        <test-method status="PASS" signature="precondition()[pri:0, instance:com.test.Login@50c87b21]" name="precondition" is-config="true" duration-ms="14407" started-at="2016-12-30T17:53:36Z" finished-at="2016-12-30T17:53:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- precondition -->
+        <test-method status="PASS" signature="test()[pri:0, instance:com.test.Login@50c87b21]" name="test" duration-ms="3744" started-at="2016-12-30T17:53:50Z" finished-at="2016-12-30T17:53:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+        <test-method status="PASS" signature="postcondition(org.testng.ITestResult)[pri:0, instance:com.test.Login@50c87b21]" name="postcondition" is-config="true" duration-ms="1980" started-at="2016-12-30T17:53:54Z" finished-at="2016-12-30T17:53:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=test status=SUCCESS method=Login.test()[pri:0, instance:com.test.Login@50c87b21] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postcondition -->
+      </class> <!-- com.test.Login -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

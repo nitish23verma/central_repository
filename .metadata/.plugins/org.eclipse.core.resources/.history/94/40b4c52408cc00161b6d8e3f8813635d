@@ -1,0 +1,34 @@
+package com.agile_ERP.test.regression;
+
+import org.testng.annotations.Test;
+
+import com.agile_ERP.ui.EmployeeDetails;
+
+public class Admin_Employee_Add extends BaseClass 
+{	
+	@Test
+	public void test()
+	{
+		String add="YES";
+		String edit="YES";
+		if(add.equals("YES")==true)
+		{
+			try {
+				add();
+			} catch (InterruptedException e) {
+					e.printStackTrace();
+			}
+		} 
+		 if(edit.equals("YES")==true)
+		{
+			try {
+				edit();
+			} catch (InterruptedException e) {
+					e.printStackTrace();
+			}
+		}
+	}
+		
+	
+
+}

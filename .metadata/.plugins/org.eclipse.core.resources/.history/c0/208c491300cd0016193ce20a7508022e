@@ -1,0 +1,80 @@
+package com.rashmi;
+public class MyNewTest {
+	
+package com.rashmi.myselnm;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.testng.annotations.Test;
+package com.autosuggestededitbox.google;
+
+import java.util.List;
+ //Scenario 1
+public class ExcelData
+  // Create a method to read data from Excel Sheet
+  public String getExcelData(String SheetName,int rowno,int colno) throws EncryptedDocumentException, InvalidFormatException, IOException {
+	  String fp="C:\\rashmi\\codes\\selenium\\TestData1.xlsx";
+	  FileInputStream fis = new FileInputStream(fp);
+	  Workbook wb = WorkbookFactory.create(fis);
+	  Sheet sh = wb.getSheet("Sheet1");
+	  Row r = sh.getRow(rowno);
+	  
+	  String data= r.getCell(1).getStringCellValue(); // read data from second column
+	  return data;
+	  
+	  }
+
+	  
+  }
+}
+
+//Scenario 2
+ // Create testNG class
+
+package com.autosuggestededitbox.google;
+
+import org.testng.annotations.Test;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import com.BinarySearch.*;
+
+public class GoogleSearchTest{
+
+@Test
+ 
+public void googleSearchTest()
+{ ExcelData eLib=new ExcelData();// create object of excel data
+   WebDriver d= new FirefoxDriver();
+	 d.manage().window().maximize();
+	 d.manage().timeouts().implicitlyWait(120,TimeUnit.SECONDS);
+	 d.get("https://google.com");
+         // read data from 15-50 row
+         for ( i=14; i<50;i++)
+	  { String data=elib.getExcelData( " Sheet1",i, 1)+ new Date().getTime() ;// read data from second column + current time stamp
+            
+	    d.findElement(By.id("lst-ib")).sendKeys(data,Keys.ENTER);// pass data in google search box
+	  }
+	  
+	  } 
+
+
+	
+}
+
+Note: To run testNG class right click and run as TestNG test
+
+

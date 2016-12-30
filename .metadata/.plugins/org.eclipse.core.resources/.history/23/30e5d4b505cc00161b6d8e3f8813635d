@@ -1,0 +1,18 @@
+package com.agile_ERP.test.regression;
+import com.agile_ERP.config.TestConfig;
+import com.agile_ERP.helper.GetData;
+import com.agile_ERP.ui.AgileApps_Login;
+
+public class BaseClass extends TestConfig 
+{   
+	
+	public static void testValidLoginTc_01()
+	{
+		String un = GetData.fromExcel("./data/tdata.xlsx","Login",1,0 );
+	    String pwd = GetData.fromExcel("./data/tdata.xlsx","Login",1,1);
+	    
+	    AgileApps_Login l = new AgileApps_Login(driver);
+	    l.login(un, pwd);
+	  
+		}
+}
